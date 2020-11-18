@@ -510,7 +510,7 @@ int main(int argc, char *argv[]) {
 			print(log_info, "Starting local interface HTTPd on port %i", "http", options.port());
 			httpd_handle =
 				MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION, options.port(), NULL, NULL,
-								 &handle_request, (void *)&mappings, MHD_OPTION_END);
+								 (MHD_AccessHandlerCallback) handle_request, (void *)&mappings, MHD_OPTION_END);
 		}
 #endif /* LOCAL_SUPPORT */
 	} catch (std::exception &e) {
